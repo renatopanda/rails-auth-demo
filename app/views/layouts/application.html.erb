@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Vagrant</title>
+    <title>MEI-ES Page</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,11 +9,42 @@
   </head>
 
   <body>
-  	<%= link_to "Articles", articles_path %> |
-  	<%= link_to "Users", users_path %> |
-    <%= link_to "Roles", roles_path %> |
-  	<%= link_to "User Roles", user_roles_path %>
 
-    <%= yield %>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="#">MEI-ES</a>
+      
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><%= link_to "Articles", articles_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Roles", roles_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "User Roles", user_roles_path, class: "nav-link" %></li>
+        </ul>
+
+        <ul class="navbar-nav mr-auto">
+          <% if current_user.nil? %>
+            <li class="nav-item"><%= link_to "Login", login_path, class: "nav-link" %></li>
+          <% else %>
+            <span class="navbar-text">Olá <%= current_user.email.split("@")[0]%> |</span>
+            <li class="nav-item"><%= link_to "Log out", logout_path, method: :delete, class: "nav-link" %></li>
+          <% end %>
+        </ul>
+      </div>
+
+    </nav>
+
+    <main role="main" class="container">
+
+      <div class="starter-template">
+        <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+        <%= yield %>
+        <%= debug(params) if Rails.env.development? %>
+      </div>
+
+    </main><!-- /.container -->
+    
   </body>
 </html>
+

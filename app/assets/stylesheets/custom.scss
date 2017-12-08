@@ -1,0 +1,28 @@
+body {
+  padding-top: 2rem;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+  /*text-align: center;*/
+}
+
+/* mixins, variables, etc. */
+
+$gray-medium-light: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  background-color: lightgrey;
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
