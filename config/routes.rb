@@ -11,4 +11,7 @@ Rails.application.routes.draw do
 
   root 'articles#index'
   
+  #config/routes.rb
+  get    '/apitest',	to: 'articles#apitest'
+  get    '/apitest2',	to: 'articles#apitest2'
  end
